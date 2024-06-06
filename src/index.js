@@ -1,17 +1,123 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+import { createRoot } from "react-dom/client";
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+import Footer from "./components/Footer/footer.js";
+import NewTaskForm from "./components/NewTaskForm/newTaskForm.js";
+import TaskList from "./components/TaskList/taskList.js";
+
+class App extends React.Component {
+  maxId = 1;
+
+  state = {
+    listItem: [],
+    todoShow: "all",
+    label: "ff",
+    text: ""
+  };
+
+  createElement(label) {
+    return {
+      label,
+      id: this.maxId++,
+      edition: false,
+      done: false,
+    };
+  }
+
+  addlist = (text) => {
+    let newItem = this.createElement(text);
+    
+    this.setState(({ listItem }) => {
+      let arr = [...listItem, newItem, this.state.text];
+      return {
+        listItem: arr,
+      };
+    });
+  };
+
+  onCreatrFunc(arr, id, name) {
+    let idx = arr.findIndex((el) => el.id == id);
+    let oldIt = arr[idx];
+    let newIt = { ...oldIt, [name]: !oldIt[name] };
+
+    return [...arr.slice(0, idx), newIt, ...arr.slice(idx + 1)];
+  }
+
+  onDone = (id) => {
+    this.setState(({ listItem }) => {
+      return {
+        listItem: this.onCreatrFunc(listItem, id, "done"),
+      };
+    });
+  };
+
+  onDelete = (id) => {
+    this.setState(({ listItem }) => {
+      let idx = listItem.findIndex((el) => el.id == id);
+      return {
+        listItem: [...listItem.slice(0, idx), ...listItem.slice(idx + 1)],
+      };
+    });
+  };
+
+  onEdition = (id) => {
+    this.setState(({ listItem }) => {
+      return {
+        listItem: this.onCreatrFunc(listItem, id, "edition"),
+      };
+    });
+  };
+
+  clearComplete = () => {
+    this.setState(() => {
+      return {
+        listItem: [],
+      };
+    });
+  };
+
+  onShowFilter = (s) => {
+    this.setState({
+      todoShow: s,
+    });
+  };
+
+
+  render() {
+    let done = this.state.listItem.filter((el) => el.done).length;
+    let doneCount = this.state.listItem.length - done;
+
+    let listItem = [];
+
+    if (this.state.todoShow == "all") {
+      listItem = this.state.listItem;
+    } else if (this.state.todoShow == "active") {
+      listItem = this.state.listItem.filter((el) => el.done == false);
+    } else if (this.state.todoShow == "complete") {
+      listItem = this.state.listItem.filter((el) => el.done == true);
+    }
+
+    return (
+      <section className="todoapp">
+        <NewTaskForm addList={this.addlist} />
+        <TaskList
+          listItem={listItem}
+          onDone={this.onDone}
+          onEdition={this.onEdition}
+          onDelete={this.onDelete}
+          onLabelDelete = {this.onLabelDelete}
+          text = {this.state.text}
+        />
+        <Footer
+          clearComplete={this.clearComplete}
+          doneCount={doneCount}
+          onShowFilter={this.onShowFilter}
+        />
+      </section>
+    );
+  }
+}
+
+const domNode = document.getElementById("root");
+createRoot(domNode).render(<App />);
