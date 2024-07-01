@@ -13,7 +13,6 @@ class App extends React.Component {
     listItem: [],
     todoShow: "all",
     label: "ff",
-    text: ""
   };
 
   createElement(label) {
@@ -27,9 +26,9 @@ class App extends React.Component {
 
   addlist = (text) => {
     let newItem = this.createElement(text);
-    
+
     this.setState(({ listItem }) => {
-      let arr = [...listItem, newItem, this.state.text];
+      let arr = [...listItem, newItem];
       return {
         listItem: arr,
       };
@@ -83,7 +82,17 @@ class App extends React.Component {
     });
   };
 
+  onChange = (e, id) => {
+    this.setState(({ listItem }) => {
+      let idx = listItem.findIndex((el) => el.id == id);
+      let item = listItem[idx];
 
+      item.label = e;
+      return {
+        listItem: [...listItem],
+      };
+    });
+  };
   render() {
     let done = this.state.listItem.filter((el) => el.done).length;
     let doneCount = this.state.listItem.length - done;
@@ -106,8 +115,8 @@ class App extends React.Component {
           onDone={this.onDone}
           onEdition={this.onEdition}
           onDelete={this.onDelete}
-          onLabelDelete = {this.onLabelDelete}
-          text = {this.state.text}
+          onLabelDelete={this.onLabelDelete}
+          onChange={this.onChange}
         />
         <Footer
           clearComplete={this.clearComplete}

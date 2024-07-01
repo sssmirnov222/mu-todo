@@ -3,31 +3,15 @@ import "./task.css";
 import { formatDistanceToNow } from "date-fns";
 
 export default class Task extends React.Component {
-  state = {
-    val: "",
-  };
-
-  onChange = (e) => {
-    if(e.key === 'Enter') {
-      e.preventDefault();
-    }
-    console.log(e.target.value)
-    // if(e.target.value == "") return 
-    this.setState({
-      val: e.target.value,
-    });
-  };
-
   
   render() {
-    const { label, onDone, onEdition, done, edition, onDelete, onLabelDelete, text } = this.props;
+    const { label, onDone, onEdition, done, edition, onDelete, onLabelDelete,id,onChange } = this.props;
 
     //переменные для добавления классов
     let classNames = "";
     let classInp = "";
     let classSpan = "";
-  
-    
+
     //условия выполнения при нажатии кнопок
     if (done) {
       classNames += "completed";
@@ -57,7 +41,7 @@ export default class Task extends React.Component {
             <label>
             
               <span className={classSpan} onClick={onDone}>
-                {this.state.val} 
+                {label} 
               </span>
              
               <form >
@@ -65,7 +49,7 @@ export default class Task extends React.Component {
                   className={classInp}
                   type="text"
                   defaultValue={label}
-                  onChange={this.onChange}
+                  onChange={(e)=>onChange(e.target.value,id)}
                   // class = "re"
                   
                 />
