@@ -36,7 +36,7 @@ class App extends React.Component {
   };
 
   onCreatrFunc(arr, id, name) {
-    let idx = arr.findIndex((el) => el.id == id);
+    let idx = arr.findIndex((el) => el.id === id);
     let oldIt = arr[idx];
     let newIt = { ...oldIt, [name]: !oldIt[name] };
 
@@ -53,7 +53,7 @@ class App extends React.Component {
 
   onDelete = (id) => {
     this.setState(({ listItem }) => {
-      let idx = listItem.findIndex((el) => el.id == id);
+      let idx = listItem.findIndex((el) => el.id === id);
       return {
         listItem: [...listItem.slice(0, idx), ...listItem.slice(idx + 1)],
       };
@@ -84,7 +84,7 @@ class App extends React.Component {
 
   onChange = (e, id) => {
     this.setState(({ listItem }) => {
-      let idx = listItem.findIndex((el) => el.id == id);
+      let idx = listItem.findIndex((el) => el.id === id);
       let item = listItem[idx];
 
       item.label = e;
@@ -99,12 +99,12 @@ class App extends React.Component {
 
     let listItem = [];
 
-    if (this.state.todoShow == "all") {
+    if (this.state.todoShow === "all") {
       listItem = this.state.listItem;
-    } else if (this.state.todoShow == "active") {
-      listItem = this.state.listItem.filter((el) => el.done == false);
-    } else if (this.state.todoShow == "complete") {
-      listItem = this.state.listItem.filter((el) => el.done == true);
+    } else if (this.state.todoShow === "active") {
+      listItem = this.state.listItem.filter((el) => el.done === false);
+    } else if (this.state.todoShow === "complete") {
+      listItem = this.state.listItem.filter((el) => el.done === true);
     }
 
     return (

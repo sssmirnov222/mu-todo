@@ -27,7 +27,7 @@ export default class NewTaskForm extends React.Component {
         <input
           className="new-todo"
           placeholder="What needs to be done?"
-          autofocus
+          autoFocus
           onChange={this.onChange}
           value={this.state.label}
         />

@@ -7,7 +7,7 @@ export default class TaskFilter extends React.Component {
     return (
       <ul className="filters">
         <li>
-          <button class="selected" onClick={() => onShowFilter('all')}>All</button>
+          <button className="selected" onClick={() => onShowFilter('all')}>All</button>
         </li>
         <li>
           <button onClick={() => onShowFilter('active')}> Active</button>

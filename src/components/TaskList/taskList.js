@@ -6,7 +6,6 @@ export default class TaskList extends React.Component {
   render() {
     const { listItem, onDone, onEdition, onDelete, onLabelDelete, onChange } = this.props;
     let element = listItem.map((item) => {
-      // console.log(item)
       return (
         <li key={item.id}>
           <Task
