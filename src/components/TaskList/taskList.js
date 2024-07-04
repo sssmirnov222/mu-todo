@@ -4,7 +4,7 @@ import Task from "../Task/task";
 
 export default class TaskList extends React.Component {
   render() {
-    const { listItem, onDone, onEdition, onDelete, onLabelDelete, onChange } = this.props;
+    const { listItem, onDone, onEdition, onDelete, onLabelDelete, onChange, onСheked} = this.props;
     let element = listItem.map((item) => {
       return (
         <li key={item.id}>
@@ -15,6 +15,7 @@ export default class TaskList extends React.Component {
             onDelete={() => onDelete(item.id)}
             onLabelDelete = {() => onLabelDelete(item.id)}
             onChange={onChange}
+            onСheked = {() => onСheked(item.id)}
           />
         </li>
       );

@@ -21,6 +21,7 @@ class App extends React.Component {
       id: this.maxId++,
       edition: false,
       done: false,
+      cheked: false,
     };
   }
 
@@ -43,12 +44,22 @@ class App extends React.Component {
     return [...arr.slice(0, idx), newIt, ...arr.slice(idx + 1)];
   }
 
+ 
+
   onDone = (id) => {
+    
     this.setState(({ listItem }) => {
       return {
         listItem: this.onCreatrFunc(listItem, id, "done"),
       };
     });
+    this.setState(({ listItem }) => {
+      return {
+        listItem: this.onCreatrFunc(listItem, id, "cheked"),
+      };
+    });
+    
+
   };
 
   onDelete = (id) => {
@@ -61,7 +72,9 @@ class App extends React.Component {
   };
 
   onEdition = (id) => {
+    
     this.setState(({ listItem }) => {
+      
       return {
         listItem: this.onCreatrFunc(listItem, id, "edition"),
       };
@@ -93,6 +106,12 @@ class App extends React.Component {
       };
     });
   };
+
+ 
+ 
+ 
+  
+
   render() {
     let done = this.state.listItem.filter((el) => el.done).length;
     let doneCount = this.state.listItem.length - done;
@@ -115,7 +134,6 @@ class App extends React.Component {
           onDone={this.onDone}
           onEdition={this.onEdition}
           onDelete={this.onDelete}
-          onLabelDelete={this.onLabelDelete}
           onChange={this.onChange}
         />
         <Footer
