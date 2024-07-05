@@ -2,6 +2,20 @@ import React from "react";
 import "./taskFilter.css";
 
 export default class TaskFilter extends React.Component {
+  static defaultProps = {
+    onShowFilter: () => {},
+  }
+  
+  static propTypes = {
+    onShowFilter: (props, propName, componentName) => {
+      let value = props[propName];
+
+      if(typeof value === 'object') return null
+
+      return new TypeError(`${componentName} is typeof object`)
+    },
+  }
+
   render() {
     const {onShowFilter} = this.props
     return (

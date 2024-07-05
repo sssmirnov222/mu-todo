@@ -4,10 +4,83 @@ import { formatDistanceToNow } from "date-fns";
 
 export default class Task extends React.Component {
 
-  // state = {
-  //   checked: false
-  // }
+  static defaultProps = {
+    label: "",
+    onDone: () => {},
+    onEdition: () => {},
+    done: 1,
+    edition: "",
+    onDelete: () => {},
+    id: 0,
+    onChange: () => {},
+    cheked: 1,
+  }
 
+  static propTypes = {
+    label: (props, propName, componentName) => {
+      let value = props[propName];
+
+      if(typeof value === 'sting') return null
+
+      return new TypeError(`${componentName} is typeof string`)
+    },
+    onDone: (props, propName, componentName) => {
+      let value = props[propName];
+
+      if(typeof value === 'object') return null
+
+      return new TypeError(`${componentName} is typeof object`)
+    },
+    onEdition: (props, propName, componentName) => {
+      let value = props[propName];
+
+      if(typeof value === 'object') return null
+
+      return new TypeError(`${componentName} is typeof object`)
+    },
+    done: (props, propName, componentName) => {
+      let value = props[propName];
+
+      if(typeof value === 'number' && !isNaN(value)) return null
+
+      return new TypeError(`${componentName} is typeof number`)
+    },
+    edition: (props, propName, componentName) => {
+      let value = props[propName];
+
+      if(typeof value === 'sting') return null
+
+      return new TypeError(`${componentName} is typeof string`)
+    },
+    onDelete: (props, propName, componentName) => {
+      let value = props[propName];
+
+      if(typeof value === 'object') return null
+
+      return new TypeError(`${componentName} is typeof object`)
+    },
+    id: (props, propName, componentName) => {
+      let value = props[propName];
+
+      if(typeof value === 'number' && !isNaN(value)) return null
+
+      return new TypeError(`${componentName} is typeof number`)
+    },
+    onChange: (props, propName, componentName) => {
+      let value = props[propName];
+
+      if(typeof value === 'object') return null
+
+      return new TypeError(`${componentName} is typeof object`)
+    },
+    cheked: (props, propName, componentName) => {
+      let value = props[propName];
+
+      if(typeof value === 'number' && !isNaN(value)) return null
+
+      return new TypeError(`${componentName} is typeof number`)
+    },
+  }
  
    onEdit = (event) => {
     if (event.keyCode == 13) {

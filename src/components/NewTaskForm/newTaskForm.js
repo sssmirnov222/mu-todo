@@ -2,6 +2,37 @@ import React from "react";
 import "./newTaskForm.css";
 
 export default class NewTaskForm extends React.Component {
+
+  static defaultProps = {
+    onSubmit: () => {},
+    label: "",
+    onChange: () => {}
+  } 
+
+  static propTypes = {
+    onSubmit: (props, propName, componentName) => {
+      let value = props[propName];
+
+      if(typeof value === 'object') return null
+
+      return new TypeError(`${componentName} is typeof object`)
+    },
+    label: (props, propName, componentName) => {
+      let value = props[propName];
+
+      if(typeof value === 'string') return null
+
+      return new TypeError(`${componentName} is typeof string`)
+    },
+    onChange: (props, propName, componentName) => {
+      let value = props[propName];
+
+      if(typeof value === 'object') return null
+
+      return new TypeError(`${componentName} is typeof object`)
+    } 
+  }
+
   state = {
     label: "",
   };
