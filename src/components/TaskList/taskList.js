@@ -67,7 +67,7 @@ export default class TaskList extends React.Component {
   }
 
   render() {
-    const { listItem, onDone, onEdition, onDelete, onLabelDelete, onChange, onСheked} = this.props;
+    const { listItem, onDone, onEdition, onDelete, onLabelDelete, onChange, onСheked, addList} = this.props;
     let element = listItem.map((item) => {
       return (
         <li key={item.id}>
@@ -79,6 +79,7 @@ export default class TaskList extends React.Component {
             onLabelDelete = {() => onLabelDelete(item.id)}
             onChange={onChange}
             onСheked = {() => onСheked(item.id)}
+            addList={() => addList(item.id)}
           />
         </li>
       );

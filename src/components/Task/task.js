@@ -4,6 +4,11 @@ import { formatDistanceToNow } from "date-fns";
 
 export default class Task extends React.Component {
 
+  state = {
+    la: ''
+  }
+
+  
   static defaultProps = {
     label: "",
     onDone: () => {},
@@ -82,11 +87,13 @@ export default class Task extends React.Component {
     },
   }
  
-   onEdit = (event) => {
-    if (event.keyCode == 13) {
-      event.preventDefault();
-  }
-   }
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    this.setState({
+       label: e
+    })
+  };
 
   render() {
     const {
@@ -99,6 +106,7 @@ export default class Task extends React.Component {
       id,
       onChange,
       cheked,
+      addList
     } = this.props;
 
     //переменные для добавления классов
@@ -131,17 +139,18 @@ export default class Task extends React.Component {
             <input className='toggle' type="checkbox" onClick={onDone} checked={cheked} />
 
             <label >
-              <span className={classSpan} onClick={onDone} >
+              <span className={classSpan} onClick={onDone}>
                 {label}
               </span>
 
-              <form >
+              <form onSubmit={this.onSubmit}>
                 <input
+                  
                   className={classInp}
                   type="text"
                   defaultValue={label}
                   onChange={(e) => onChange(e.target.value, id)}
-                  onkeypress={(e) => e.preventDefault()}
+                  
                 />
               </form>
 

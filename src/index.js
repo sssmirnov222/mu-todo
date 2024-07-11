@@ -135,6 +135,7 @@ class App extends React.Component {
           onEdition={this.onEdition}
           onDelete={this.onDelete}
           onChange={this.onChange}
+          addList={this.addlist}
         />
         <Footer
           clearComplete={this.clearComplete}
