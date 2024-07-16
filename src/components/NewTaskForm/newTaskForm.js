@@ -7,7 +7,7 @@ export default class NewTaskForm extends React.Component {
     onSubmit: () => {},
     label: "",
     onChange: () => {}
-  } 
+  }
 
   static propTypes = {
     onSubmit: (props, propName, componentName) => {
@@ -30,7 +30,7 @@ export default class NewTaskForm extends React.Component {
       if(typeof value === 'object') return null
 
       return new TypeError(`${componentName} is typeof object`)
-    } 
+    }
   }
 
   state = {
@@ -41,28 +41,33 @@ export default class NewTaskForm extends React.Component {
     this.setState({
       label: e.target.value,
     });
+
+
   };
 
   onSubmit = (e) => {
-    e.preventDefault();
-    this.props.addList(this.state.label);
-    this.setState({
-      label: "",
-    });
+    console.log(e)
+    if(e.key==="Enter"){  this.props.addList(this.state.label);
+      this.setState({
+        label: "",
+      });}
+
   };
 
   render() {
     return (
-      <form className="header" onSubmit={this.onSubmit}>
+      <div className="header" >
         <h1>todos</h1>
         <input
+            type="text"
           className="new-todo"
           placeholder="What needs to be done?"
           autoFocus
           onChange={this.onChange}
+          onKeyUp={this.onSubmit}
           value={this.state.label}
         />
-      </form>
+      </div>
     );
   }
 }

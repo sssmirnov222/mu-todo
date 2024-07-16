@@ -88,12 +88,7 @@ export default class Task extends React.Component {
   }
  
 
-  onSubmit = (e) => {
-    e.preventDefault();
-    this.setState({
-       label: e
-    })
-  };
+
 
   render() {
     const {
@@ -109,6 +104,16 @@ export default class Task extends React.Component {
       addList
     } = this.props;
 
+    this.onSubmit = (e) => {
+      e.preventDefault();
+      console.log(e)
+      if(e.key==="Enter") {
+        this.setState({
+          label: e
+        })
+        onEdition()
+      }
+    };
     //переменные для добавления классов
     let classNames = "";
     let classInp = "";
@@ -143,16 +148,18 @@ export default class Task extends React.Component {
                 {label}
               </span>
 
-              <form onSubmit={this.onSubmit}>
+              <div>
                 <input
                   
                   className={classInp}
                   type="text"
                   defaultValue={label}
+                  onKeyUp={this.onSubmit}
                   onChange={(e) => onChange(e.target.value, id)}
+                  value={label}
                   
                 />
-              </form>
+              </div>
 
               <span className="created">created {time}</span>
             </label>
