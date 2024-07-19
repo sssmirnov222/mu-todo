@@ -24,6 +24,8 @@
       "react-app/jest"
     ]
   },
+  "homepage": "https://<github-username>.github.io/mu-todo",
+  "deploy": "npm run build&&gh-pages -d build",
   "browserslist": {
     "production": [
       ">0.2%",
