@@ -122,7 +122,7 @@ export default class Task extends React.Component {
               type="checkbox"
               onClick={onDone}
               checked={cheked}
-              onChange={onChange}
+              onChange={() => {}}
             />
 
             <label>
