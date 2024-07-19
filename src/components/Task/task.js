@@ -3,12 +3,10 @@ import "./task.css";
 import { formatDistanceToNow } from "date-fns";
 
 export default class Task extends React.Component {
-
   state = {
-    la: ''
-  }
+    la: "",
+  };
 
-  
   static defaultProps = {
     label: "",
     onDone: () => {},
@@ -19,76 +17,55 @@ export default class Task extends React.Component {
     id: 0,
     onChange: () => {},
     cheked: 1,
-  }
+  };
 
   static propTypes = {
     label: (props, propName, componentName) => {
       let value = props[propName];
 
-      if(typeof value === 'sting') return null
-
-      return new TypeError(`${componentName} is typeof string`)
+      if (typeof value === "sting") return null;
     },
     onDone: (props, propName, componentName) => {
       let value = props[propName];
 
-      if(typeof value === 'object') return null
-
-      return new TypeError(`${componentName} is typeof object`)
+      if (typeof value === "object") return null;
     },
     onEdition: (props, propName, componentName) => {
       let value = props[propName];
 
-      if(typeof value === 'object') return null
-
-      return new TypeError(`${componentName} is typeof object`)
+      if (typeof value === "object") return null;
     },
     done: (props, propName, componentName) => {
       let value = props[propName];
 
-      if(typeof value === 'number' && !isNaN(value)) return null
-
-      return new TypeError(`${componentName} is typeof number`)
+      if (typeof value === "number" && !isNaN(value)) return null;
     },
     edition: (props, propName, componentName) => {
       let value = props[propName];
 
-      if(typeof value === 'sting') return null
-
-      return new TypeError(`${componentName} is typeof string`)
+      if (typeof value === "sting") return null;
     },
     onDelete: (props, propName, componentName) => {
       let value = props[propName];
 
-      if(typeof value === 'object') return null
-
-      return new TypeError(`${componentName} is typeof object`)
+      if (typeof value === "object") return null;
     },
     id: (props, propName, componentName) => {
       let value = props[propName];
 
-      if(typeof value === 'number' && !isNaN(value)) return null
-
-      return new TypeError(`${componentName} is typeof number`)
+      if (typeof value === "number" && !isNaN(value)) return null;
     },
     onChange: (props, propName, componentName) => {
       let value = props[propName];
 
-      if(typeof value === 'object') return null
-
-      return new TypeError(`${componentName} is typeof object`)
+      if (typeof value === "object") return null;
     },
     cheked: (props, propName, componentName) => {
       let value = props[propName];
 
-      if(typeof value === 'number' && !isNaN(value)) return null
-
-      return new TypeError(`${componentName} is typeof number`)
+      if (typeof value === "number" && !isNaN(value)) return null;
     },
-  }
- 
-
-
+  };
 
   render() {
     const {
@@ -101,24 +78,23 @@ export default class Task extends React.Component {
       id,
       onChange,
       cheked,
-      addList
+      addList,
     } = this.props;
 
     this.onSubmit = (e) => {
       e.preventDefault();
-      console.log(e)
-      if(e.key==="Enter") {
+      console.log(e);
+      if (e.key === "Enter") {
         this.setState({
-          label: e
-        })
-        onEdition()
+          label: e,
+        });
+        onEdition();
       }
     };
     //переменные для добавления классов
     let classNames = "";
     let classInp = "";
     let classSpan = "";
-    
 
     //условия выполнения при нажатии кнопок
     if (done) {
@@ -141,23 +117,26 @@ export default class Task extends React.Component {
       <ul className="todo-list">
         <li className={classNames}>
           <div className="taskFlex">
-            <input className='toggle' type="checkbox" onClick={onDone} checked={cheked} />
+            <input
+              className="toggle"
+              type="checkbox"
+              onClick={onDone}
+              checked={cheked}
+              onChange={onChange}
+            />
 
-            <label >
+            <label>
               <span className={classSpan} onClick={onDone}>
                 {label}
               </span>
 
               <div>
                 <input
-                  
                   className={classInp}
                   type="text"
-                  defaultValue={label}
                   onKeyUp={this.onSubmit}
                   onChange={(e) => onChange(e.target.value, id)}
                   value={label}
-                  
                 />
               </div>
 

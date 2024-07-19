@@ -15,21 +15,20 @@ export default class NewTaskForm extends React.Component {
 
       if(typeof value === 'object') return null
 
-      return new TypeError(`${componentName} is typeof object`)
+    
     },
     label: (props, propName, componentName) => {
       let value = props[propName];
 
       if(typeof value === 'string') return null
 
-      return new TypeError(`${componentName} is typeof string`)
     },
     onChange: (props, propName, componentName) => {
       let value = props[propName];
 
       if(typeof value === 'object') return null
 
-      return new TypeError(`${componentName} is typeof object`)
+     
     }
   }
 

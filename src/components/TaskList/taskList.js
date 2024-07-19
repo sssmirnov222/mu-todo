@@ -20,49 +20,48 @@ export default class TaskList extends React.Component {
 
       if(typeof value === 'object') return null
 
-      return new TypeError(`${componentName} is typeof object`)
+    
     }, 
     onDone: (props, propName, componentName) => {
       let value = props[propName];
 
       if(typeof value === 'object') return null
 
-      return new TypeError(`${componentName} is typeof object`)
+ 
     }, 
     onEdition: (props, propName, componentName) => {
       let value = props[propName];
 
       if(typeof value === 'object') return null
 
-      return new TypeError(`${componentName} is typeof object`)
     },
     onDelete: (props, propName, componentName) => {
       let value = props[propName];
 
       if(typeof value === 'object') return null
 
-      return new TypeError(`${componentName} is typeof object`)
+      
     }, 
     onLabelDelete: (props, propName, componentName) => {
       let value = props[propName];
 
       if(typeof value === 'object') return null
 
-      return new TypeError(`${componentName} is typeof object`)
+      
     }, 
     onChange: (props, propName, componentName) => {
       let value = props[propName];
 
       if(typeof value === 'object') return null
 
-      return new TypeError(`${componentName} is typeof object`)
+     
     }, 
     onСheked: (props, propName, componentName) => {
       let value = props[propName];
 
       if(typeof value === 'object') return null
 
-      return new TypeError(`${componentName} is typeof object`)
+     
     }
   }
 

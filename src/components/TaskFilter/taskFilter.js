@@ -12,7 +12,6 @@ export default class TaskFilter extends React.Component {
 
       if(typeof value === 'object') return null
 
-      return new TypeError(`${componentName} is typeof object`)
     },
   }
 

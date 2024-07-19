@@ -17,21 +17,20 @@ export default class Footer extends React.Component {
 
       if(typeof value === 'object') return null
 
-      return new TypeError(`${componentName} is typeof object`)
+      
     },
     doneCount: (props, propName, componentName) => {
       let value = props[propName];
 
       if(typeof value === 'number' && !isNaN(value)) return null
 
-      return new TypeError(`${componentName} is typeof number`)
+      
     },
     onShowFilter: (props, propName, componentName) => {
       let value = props[propName];
 
       if(typeof value === 'object') return null
 
-      return new TypeError(`${componentName} is typeof object`)
     } 
   }
 
