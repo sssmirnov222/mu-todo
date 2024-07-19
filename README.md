@@ -1,1 +1,3 @@
-https://sssmirnov222.github.io/mu-todo/
+---
+permalink: /index.html
+---
