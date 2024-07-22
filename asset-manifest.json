@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/mu-todo/static/css/main.a5d13e44.css",
+    "main.js": "/mu-todo/static/js/main.e2d2f5e9.js",
+    "index.html": "/mu-todo/index.html",
+    "main.a5d13e44.css.map": "/mu-todo/static/css/main.a5d13e44.css.map",
+    "main.e2d2f5e9.js.map": "/mu-todo/static/js/main.e2d2f5e9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a5d13e44.css",
+    "static/js/main.e2d2f5e9.js"
+  ]
+}
