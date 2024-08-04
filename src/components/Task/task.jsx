@@ -1,18 +1,14 @@
-import React from "react";
-import "./task.css";
-import { formatDistanceToNow } from "date-fns";
+import React from 'react';
+import './task.css';
+import { formatDistanceToNow } from 'date-fns';
 
 export default class Task extends React.Component {
-  state = {
-    la: "",
-  };
-
   static defaultProps = {
-    label: "",
+    label: '',
     onDone: () => {},
     onEdition: () => {},
     done: 1,
-    edition: "",
+    edition: '',
     onDelete: () => {},
     id: 0,
     onChange: () => {},
@@ -20,93 +16,81 @@ export default class Task extends React.Component {
   };
 
   static propTypes = {
-    label: (props, propName, componentName) => {
+    label: (props, propName) => {
       let value = props[propName];
 
-      if (typeof value === "sting") return null;
+      if (typeof value === 'string') return null;
     },
-    onDone: (props, propName, componentName) => {
+    onDone: (props, propName) => {
       let value = props[propName];
 
-      if (typeof value === "object") return null;
+      if (typeof value === 'object') return null;
     },
-    onEdition: (props, propName, componentName) => {
+    onEdition: (props, propName) => {
       let value = props[propName];
 
-      if (typeof value === "object") return null;
+      if (typeof value === 'object') return null;
     },
-    done: (props, propName, componentName) => {
+    done: (props, propName) => {
       let value = props[propName];
 
-      if (typeof value === "number" && !isNaN(value)) return null;
+      if (typeof value === 'number' && !isNaN(value)) return null;
     },
-    edition: (props, propName, componentName) => {
+    edition: (props, propName) => {
       let value = props[propName];
 
-      if (typeof value === "sting") return null;
+      if (typeof value === 'string') return null;
     },
-    onDelete: (props, propName, componentName) => {
+    onDelete: (props, propName) => {
       let value = props[propName];
 
-      if (typeof value === "object") return null;
+      if (typeof value === 'object') return null;
     },
-    id: (props, propName, componentName) => {
+    id: (props, propName) => {
       let value = props[propName];
 
-      if (typeof value === "number" && !isNaN(value)) return null;
+      if (typeof value === 'number' && !isNaN(value)) return null;
     },
-    onChange: (props, propName, componentName) => {
+    onChange: (props, propName) => {
       let value = props[propName];
 
-      if (typeof value === "object") return null;
+      if (typeof value === 'object') return null;
     },
-    cheked: (props, propName, componentName) => {
+    cheked: (props, propName) => {
       let value = props[propName];
 
-      if (typeof value === "number" && !isNaN(value)) return null;
+      if (typeof value === 'number' && !isNaN(value)) return null;
     },
   };
 
   render() {
-    const {
-      label,
-      onDone,
-      onEdition,
-      done,
-      edition,
-      onDelete,
-      id,
-      onChange,
-      cheked,
-      addList,
-    } = this.props;
+    const { label, onDone, onEdition, done, edition, onDelete, id, onChange, cheked } = this.props;
 
-    this.onSubmit = (e) => {
-      e.preventDefault();
-      console.log(e);
-      if (e.key === "Enter") {
+    this.onSubmit = (event) => {
+      event.preventDefault();
+      if (event.key === 'Enter') {
         this.setState({
-          label: e,
+          label: event,
         });
         onEdition();
       }
     };
     //переменные для добавления классов
-    let classNames = "";
-    let classInp = "";
-    let classSpan = "";
+    let classNames = '';
+    let classInp = '';
+    let classSpan = '';
 
     //условия выполнения при нажатии кнопок
     if (done) {
-      classNames += "completed";
+      classNames += 'completed';
     }
 
     if (edition) {
-      classInp += "editing";
-      classSpan += "none";
+      classInp += 'editing';
+      classSpan += 'none';
     } else {
-      classInp += "none";
-      classSpan += "description";
+      classInp += 'none';
+      classSpan += 'description';
     }
 
     //временная переменная
@@ -117,13 +101,7 @@ export default class Task extends React.Component {
       <ul className="todo-list">
         <li className={classNames}>
           <div className="taskFlex">
-            <input
-              className="toggle"
-              type="checkbox"
-              onClick={onDone}
-              checked={cheked}
-              onChange={() => {}}
-            />
+            <input className="toggle" type="checkbox" onClick={onDone} checked={cheked} onChange={() => {}} />
 
             <label>
               <span className={classSpan} onClick={onDone}>

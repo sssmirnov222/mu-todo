@@ -1,18 +1,18 @@
-import React from "react";
+import React from 'react';
 
-import { createRoot } from "react-dom/client";
+import { createRoot } from 'react-dom/client';
 
-import Footer from "./components/Footer/footer.js";
-import NewTaskForm from "./components/NewTaskForm/newTaskForm.js";
-import TaskList from "./components/TaskList/taskList.js";
+import Footer from './components/Footer/footer.jsx';
+import NewTaskForm from './components/NewTaskForm/newTaskForm.jsx';
+import TaskList from './components/TaskList/taskList.jsx';
 
 class App extends React.Component {
   maxId = 1;
 
   state = {
     listItem: [],
-    todoShow: "all",
-    label: "ff",
+    todoShow: 'all',
+    label: 'ff',
   };
 
   createElement(label) {
@@ -44,22 +44,17 @@ class App extends React.Component {
     return [...arr.slice(0, idx), newIt, ...arr.slice(idx + 1)];
   }
 
- 
-
   onDone = (id) => {
-    
     this.setState(({ listItem }) => {
       return {
-        listItem: this.onCreatrFunc(listItem, id, "done"),
+        listItem: this.onCreatrFunc(listItem, id, 'done'),
       };
     });
     this.setState(({ listItem }) => {
       return {
-        listItem: this.onCreatrFunc(listItem, id, "cheked"),
+        listItem: this.onCreatrFunc(listItem, id, 'cheked'),
       };
     });
-    
-
   };
 
   onDelete = (id) => {
@@ -72,11 +67,9 @@ class App extends React.Component {
   };
 
   onEdition = (id) => {
-    
     this.setState(({ listItem }) => {
-      
       return {
-        listItem: this.onCreatrFunc(listItem, id, "edition"),
+        listItem: this.onCreatrFunc(listItem, id, 'edition'),
       };
     });
   };
@@ -89,28 +82,23 @@ class App extends React.Component {
     });
   };
 
-  onShowFilter = (s) => {
+  onShowFilter = (all) => {
     this.setState({
-      todoShow: s,
+      todoShow: all,
     });
   };
 
-  onChange = (e, id) => {
+  onChange = (event, id) => {
     this.setState(({ listItem }) => {
       let idx = listItem.findIndex((el) => el.id === id);
       let item = listItem[idx];
 
-      item.label = e;
+      item.label = event;
       return {
         listItem: [...listItem],
       };
     });
   };
-
- 
- 
- 
-  
 
   render() {
     let done = this.state.listItem.filter((el) => el.done).length;
@@ -118,11 +106,11 @@ class App extends React.Component {
 
     let listItem = [];
 
-    if (this.state.todoShow === "all") {
+    if (this.state.todoShow === 'all') {
       listItem = this.state.listItem;
-    } else if (this.state.todoShow === "active") {
+    } else if (this.state.todoShow === 'active') {
       listItem = this.state.listItem.filter((el) => el.done === false);
-    } else if (this.state.todoShow === "complete") {
+    } else if (this.state.todoShow === 'complete') {
       listItem = this.state.listItem.filter((el) => el.done === true);
     }
 
@@ -137,15 +125,11 @@ class App extends React.Component {
           onChange={this.onChange}
           addList={this.addlist}
         />
-        <Footer
-          clearComplete={this.clearComplete}
-          doneCount={doneCount}
-          onShowFilter={this.onShowFilter}
-        />
+        <Footer clearComplete={this.clearComplete} doneCount={doneCount} onShowFilter={this.onShowFilter} />
       </section>
     );
   }
 }
 
-const domNode = document.getElementById("root");
+const domNode = document.getElementById('root');
 createRoot(domNode).render(<App />);
