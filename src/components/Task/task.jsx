@@ -68,13 +68,14 @@ export default class Task extends React.Component {
 
     this.onSubmit = (event) => {
       event.preventDefault();
-      if (event.key === 'Enter') {
+      if (event.key === 'Enter' && label.length !== 0) {
         this.setState({
           label: event,
         });
         onEdition();
       }
     };
+
     //переменные для добавления классов
     let classNames = '';
     let classInp = '';
@@ -113,7 +114,7 @@ export default class Task extends React.Component {
                   className={classInp}
                   type="text"
                   onKeyUp={this.onSubmit}
-                  onChange={(e) => onChange(e.target.value, id)}
+                  onChange={(event) => onChange(event.target.value, id)}
                   value={label}
                 />
               </div>

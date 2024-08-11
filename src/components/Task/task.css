@@ -97,7 +97,6 @@ li {
   top: 0;
   bottom: -3px;
   width: 30px;
-  height: 40px;
   font-size: 34px;
   color: #cc9a9a;
   margin: auto 0 11px;
@@ -143,7 +142,6 @@ li {
   padding: 0%;
 }
 
-.taskFlex label,
 .taskFlex form {
   height: 30px;
 }
@@ -159,9 +157,13 @@ li {
 }
 
 span {
-  padding-right: 10px;
+  padding-right: 15px;
 }
 
+.icon-edit,
+.icon-destroy {
+  padding-top: 5px;
+}
 @media (max-width: 410px) {
   span {
     font-size: 14px;
