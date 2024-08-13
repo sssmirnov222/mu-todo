@@ -63,15 +63,19 @@ export default class Task extends React.Component {
     },
   };
 
+  state = {
+    label: '',
+  };
+
   render() {
     const { label, onDone, onEdition, done, edition, onDelete, id, onChange, cheked } = this.props;
 
     this.onSubmit = (event) => {
       event.preventDefault();
       if (event.key === 'Enter' && label.length !== 0) {
-        this.setState({
-          label: event,
-        });
+        onEdition();
+      }
+      if (event.key === 'Escape') {
         onEdition();
       }
     };

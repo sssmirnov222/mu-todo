@@ -75,9 +75,10 @@ class App extends React.Component {
   };
 
   clearComplete = () => {
-    this.setState(() => {
+    this.setState(({ listItem }) => {
+      let complete = listItem.filter((el) => el.done === false);
       return {
-        listItem: [],
+        listItem: complete,
       };
     });
   };

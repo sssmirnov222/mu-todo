@@ -32,7 +32,7 @@ export default class NewTaskForm extends React.Component {
 
   onChange = (event) => {
     this.setState({
-      label: event.target.value,
+      label: event.target.value.trim(),
     });
   };
 
