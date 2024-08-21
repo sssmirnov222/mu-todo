@@ -32,11 +32,16 @@ export default class NewTaskForm extends React.Component {
 
   onChange = (event) => {
     this.setState({
-      label: event.target.value.trim(),
+      label: event.target.value,
     });
   };
 
   onSubmit = (event) => {
+    if (event.key === ' ') {
+      this.setState({
+        label: event.target.value.trimStart(),
+      });
+    }
     if (event.key === 'Enter' && this.state.label !== '') {
       this.props.addList(this.state.label);
       this.setState({
