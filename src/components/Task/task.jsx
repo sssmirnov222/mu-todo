@@ -64,7 +64,9 @@ export default class Task extends React.Component {
   };
 
   state = {
-    label: '',
+    text: this.props.label,
+    label: this.props.label,
+    add: '',
   };
 
   render() {
@@ -73,9 +75,17 @@ export default class Task extends React.Component {
     this.onSubmit = (event) => {
       event.preventDefault();
       if (event.key === 'Enter' && label.length !== 0) {
+        this.setState({
+          add: label.slice(this.state.text.length),
+          label: label,
+        });
         onEdition();
       }
       if (event.key === 'Escape') {
+        this.setState({
+          label: this.state.text + this.state.add,
+        });
+
         onEdition();
       }
     };
@@ -110,7 +120,7 @@ export default class Task extends React.Component {
 
             <label>
               <span className={classSpan} onClick={onDone}>
-                {label}
+                {this.state.label}
               </span>
 
               <div>
