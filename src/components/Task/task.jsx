@@ -75,17 +75,17 @@ export default class Task extends React.Component {
     this.onSubmit = (event) => {
       event.preventDefault();
       if (event.key === 'Enter' && label.length !== 0) {
+        onChange(label, id);
         this.setState({
           add: label.slice(this.state.text.length),
           label: label,
+          text: label,
         });
+        if (!label.trim()) return;
         onEdition();
       }
       if (event.key === 'Escape') {
-        this.setState({
-          label: this.state.text + this.state.add,
-        });
-
+        onChange(this.state.text, id);
         onEdition();
       }
     };
