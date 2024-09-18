@@ -1,65 +1,63 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './newTaskForm.css';
 
-export default class NewTaskForm extends React.Component {
-  static defaultProps = {
-    onSubmit: () => {},
-    label: '',
-    onChange: () => {},
+const NewTaskForm = ({ addList }) => {
+  const [newList, setNewList] = useState('');
+
+  const onChange = (event) => {
+    setNewList(event.target.value);
   };
 
-  static propTypes = {
-    onSubmit: (props, propName) => {
-      let value = props[propName];
-
-      if (typeof value === 'object') return null;
-    },
-    label: (props, propName) => {
-      let value = props[propName];
-
-      if (typeof value === 'string') return null;
-    },
-    onChange: (props, propName) => {
-      let value = props[propName];
-
-      if (typeof value === 'object') return null;
-    },
-  };
-
-  state = {
-    label: '',
-  };
-
-  onChange = (event) => {
-    this.setState({
-      label: event.target.value,
-    });
-  };
-
-  onSubmit = (event) => {
-    if (!this.state.label.trim()) return;
-    if (event.key === 'Enter' && this.state.label !== '') {
-      this.props.addList(this.state.label);
-      this.setState({
-        label: '',
-      });
+  const onSubmit = (event) => {
+    if (!newList.trim()) return;
+    if (event.key === 'Enter' && newList !== '') {
+      addList(newList);
+      setNewList('');
     }
   };
 
-  render() {
-    return (
-      <div className="header">
-        <h1>todos</h1>
-        <input
-          type="text"
-          className="new-todo"
-          placeholder="What needs to be done?"
-          autoFocus
-          onChange={this.onChange}
-          onKeyUp={this.onSubmit}
-          value={this.state.label}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="header">
+      <h1>todos</h1>
+      <input
+        type="text"
+        className="new-todo"
+        placeholder="What needs to be done?"
+        autoFocus
+        onChange={onChange}
+        onKeyUp={onSubmit}
+        value={newList}
+      />
+    </div>
+  );
+};
+
+export default NewTaskForm;
+
+NewTaskForm.defaultProps = {
+  onSubmit: () => {},
+  label: '',
+  onChange: () => {},
+};
+
+NewTaskForm.propTypes = {
+  onSubmit: (props, propName) => {
+    let value = props[propName];
+
+    if (typeof value === 'object') return null;
+  },
+  label: (props, propName) => {
+    let value = props[propName];
+
+    if (typeof value === 'string') return null;
+  },
+  onChange: (props, propName) => {
+    let value = props[propName];
+
+    if (typeof value === 'object') return null;
+  },
+};
+
+//   state = {
+//     label: '',
+//   };

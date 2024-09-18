@@ -1,35 +1,33 @@
 import React from 'react';
 import './taskFilter.css';
 
-export default class TaskFilter extends React.Component {
-  static defaultProps = {
-    onShowFilter: () => {},
-  };
+const TaskFilter = ({ onShowFilter }) => {
+  return (
+    <ul className="filters">
+      <li>
+        <button className="selected" onClick={() => onShowFilter('all')}>
+          All
+        </button>
+      </li>
+      <li>
+        <button onClick={() => onShowFilter('active')}> Active</button>
+      </li>
+      <li>
+        <button onClick={() => onShowFilter('complete')}> Completed</button>
+      </li>
+    </ul>
+  );
+};
+export default TaskFilter;
 
-  static propTypes = {
-    onShowFilter: (props, propName) => {
-      let value = props[propName];
+TaskFilter.defaultProps = {
+  onShowFilter: () => {},
+};
 
-      if (typeof value === 'object') return null;
-    },
-  };
+TaskFilter.propTypes = {
+  onShowFilter: (props, propName) => {
+    let value = props[propName];
 
-  render() {
-    const { onShowFilter } = this.props;
-    return (
-      <ul className="filters">
-        <li>
-          <button className="selected" onClick={() => onShowFilter('all')}>
-            All
-          </button>
-        </li>
-        <li>
-          <button onClick={() => onShowFilter('active')}> Active</button>
-        </li>
-        <li>
-          <button onClick={() => onShowFilter('complete')}> Completed</button>
-        </li>
-      </ul>
-    );
-  }
-}
+    if (typeof value === 'object') return null;
+  },
+};
