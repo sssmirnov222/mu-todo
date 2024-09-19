@@ -3,23 +3,26 @@ import './taskList.css';
 import Task from '../Task/task';
 
 const TaskList = ({ listItem, onDone, onEdition, onDelete, onLabelDelete, onChange, onСheked, addList }) => {
-  let element = listItem.map((item) => {
-    return (
-      <li key={item.id}>
-        <Task
-          {...item}
-          onDone={() => onDone(item.id)}
-          onEdition={() => onEdition(item.id)}
-          onDelete={() => onDelete(item.id)}
-          onLabelDelete={() => onLabelDelete(item.id)}
-          onChange={onChange}
-          onСheked={() => onСheked(item.id)}
-          addList={() => addList(item.id)}
-        />
-      </li>
-    );
-  });
-  return <ul className="ul_display">{element}</ul>;
+  return (
+    <ul className="ul_display">
+      {listItem.map((item) => {
+        return (
+          <li key={item.id}>
+            <Task
+              {...item}
+              onDone={() => onDone(item.id)}
+              onEdition={() => onEdition(item.id)}
+              onDelete={() => onDelete(item.id)}
+              onLabelDelete={() => onLabelDelete(item.id)}
+              onChange={onChange}
+              onСheked={() => onСheked(item.id)}
+              addList={() => addList(item.id)}
+            />
+          </li>
+        );
+      })}
+    </ul>
+  );
 };
 
 export default TaskList;

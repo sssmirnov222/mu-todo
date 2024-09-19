@@ -45,7 +45,7 @@ const Task = ({ label, onDone, onEdition, done, edition, onDelete, id, onChange,
     <ul className="todo-list">
       <li className={classNames}>
         <div className="taskFlex">
-          <input className="toggle" type="checkbox" onClick={onDone} checked={cheked} onChange={() => {}} />
+          <input className="toggle" type="checkbox" onClick={onDone} checked={cheked} />
 
           <label>
             <span className={classSpan} onClick={onDone}>
