@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './task.css';
+import Time from '../Time/Time';
 import { formatDistanceToNow } from 'date-fns';
 
-const Task = ({ label, onDone, onEdition, done, edition, onDelete, id, onChange, cheked }) => {
+const Task = ({ label, onDone, onEdition, done, edition, onDelete, id, onChange, cheked, min, sec }) => {
   const [text, setText] = useState(label);
 
   const onSubmit = (event) => {
@@ -38,6 +39,7 @@ const Task = ({ label, onDone, onEdition, done, edition, onDelete, id, onChange,
   }
 
   //временная переменная
+
   const createDate = new Date();
   let time = formatDistanceToNow(createDate, { addSuffix: true });
 
@@ -62,7 +64,8 @@ const Task = ({ label, onDone, onEdition, done, edition, onDelete, id, onChange,
               />
             </div>
 
-            <span className="created">created {time}</span>
+            <div>{<Time minutes={min} seconds={sec} />}</div>
+            <span className="created">{time}</span>
           </label>
           <button className="icon icon-edit" onClick={onEdition}></button>
           <button className="icon icon-destroy" onClick={onDelete}></button>

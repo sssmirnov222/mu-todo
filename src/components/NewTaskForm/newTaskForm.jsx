@@ -3,6 +3,8 @@ import './newTaskForm.css';
 
 const NewTaskForm = ({ addList }) => {
   const [newList, setNewList] = useState('');
+  const [min, setMin] = useState(null);
+  const [sec, setSec] = useState(null);
 
   const onChange = (event) => {
     setNewList(event.target.value);
@@ -11,23 +13,53 @@ const NewTaskForm = ({ addList }) => {
   const onSubmit = (event) => {
     if (!newList.trim()) return;
     if (event.key === 'Enter' && newList !== '') {
-      addList(newList);
+      addList(newList, min, sec);
       setNewList('');
+      setMin('');
+      setSec('');
     }
+  };
+
+  const onChangeMin = (event) => {
+    setMin(event.target.value);
+  };
+
+  const onChangeSec = (event) => {
+    setSec(event.target.value);
   };
 
   return (
     <div className="header">
       <h1>todos</h1>
-      <input
-        type="text"
-        className="new-todo"
-        placeholder="What needs to be done?"
-        autoFocus
-        onChange={onChange}
-        onKeyUp={onSubmit}
-        value={newList}
-      />
+      <div className="header-input">
+        <input
+          type="text"
+          className="new-todo"
+          placeholder="What needs to be done?"
+          autoFocus
+          onChange={onChange}
+          onKeyUp={onSubmit}
+          value={newList}
+        />
+        <div className="header-input__timer">
+          <input
+            type="text"
+            className="new-todo"
+            placeholder="Min"
+            value={min}
+            onChange={onChangeMin}
+            onKeyUp={onSubmit}
+          />
+          <input
+            type="text"
+            className="new-todo"
+            placeholder="Sec"
+            value={sec}
+            onChange={onChangeSec}
+            onKeyUp={onSubmit}
+          />
+        </div>
+      </div>
     </div>
   );
 };
