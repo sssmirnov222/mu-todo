@@ -12,7 +12,7 @@ const NewTaskForm = ({ addList }) => {
 
   const onSubmit = (event) => {
     if (!newList.trim()) return;
-    if (event.key === 'Enter' && newList !== '') {
+    if (event.key === 'Enter' && newList !== '' && min !== '' && sec !== '') {
       addList(newList, min, sec);
       setNewList('');
       setMin('');
