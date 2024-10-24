@@ -3,8 +3,8 @@ import './newTaskForm.css';
 
 const NewTaskForm = ({ addList }) => {
   const [newList, setNewList] = useState('');
-  const [min, setMin] = useState(null);
-  const [sec, setSec] = useState(null);
+  const [min, setMin] = useState();
+  const [sec, setSec] = useState();
 
   const onChange = (event) => {
     setNewList(event.target.value);

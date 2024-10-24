@@ -32,8 +32,8 @@ const App = () => {
   function createList(label, min, sec) {
     return {
       label,
-      min,
-      sec,
+      min: Number(Math.abs(min)),
+      sec: Number(Math.abs(sec)),
       id: Date.now(),
       edition: false,
       done: false,
@@ -47,7 +47,8 @@ const App = () => {
   };
 
   const clearComplete = () => {
-    setListItem([]);
+    let complete = listItem.filter((el) => el.done === false);
+    setListItem(complete);
   };
 
   const onShowFilter = (all) => {
