@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/mu-todo/static/css/main.2d8d7c60.css",
-    "main.js": "/mu-todo/static/js/main.85660517.js",
+    "main.js": "/mu-todo/static/js/main.0794e2a0.js",
     "index.html": "/mu-todo/index.html",
     "main.2d8d7c60.css.map": "/mu-todo/static/css/main.2d8d7c60.css.map",
-    "main.85660517.js.map": "/mu-todo/static/js/main.85660517.js.map"
+    "main.0794e2a0.js.map": "/mu-todo/static/js/main.0794e2a0.js.map"
   },
   "entrypoints": [
     "static/css/main.2d8d7c60.css",
-    "static/js/main.85660517.js"
+    "static/js/main.0794e2a0.js"
   ]
 }
