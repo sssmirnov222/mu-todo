@@ -3,20 +3,26 @@ import './newTaskForm.css';
 
 const NewTaskForm = ({ addList }) => {
   const [newList, setNewList] = useState('');
-  const [min, setMin] = useState();
-  const [sec, setSec] = useState();
+  const [min, setMin] = useState('');
+  const [sec, setSec] = useState('');
 
   const onChange = (event) => {
     setNewList(event.target.value);
   };
 
+  console.log(typeof min, typeof sec);
+  console.log(min, sec);
+
   const onSubmit = (event) => {
     if (!newList.trim()) return;
+
     if (event.key === 'Enter' && newList !== '' && min !== '' && sec !== '') {
-      addList(newList, min, sec);
-      setNewList('');
-      setMin('');
-      setSec('');
+      if (!isNaN(min) && !isNaN(sec) && Math.abs(min) < 59 && Math.abs(sec) < 59) {
+        addList(newList, min, sec);
+        setNewList('');
+        setMin('');
+        setSec('');
+      }
     }
   };
 

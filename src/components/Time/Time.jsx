@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './Time.css';
 
-const Time = ({ minutes = 0, seconds = 0 }) => {
+const Time = ({ minutes, seconds }) => {
   const [paused, setPaused] = useState(true);
   const [over, setOver] = useState(false);
   const [[m, s], setTime] = useState([minutes, seconds]);
 
+  console.log(m, s);
+
   const tick = () => {
     if (paused || over) return;
-
-    if (Number.isNaN(m) || Number.isNaN(s)) {
-      setTime(0, 0);
-    }
 
     if (m === 0 && s === 0) {
       setOver(true);
@@ -35,7 +33,8 @@ const Time = ({ minutes = 0, seconds = 0 }) => {
 
   return (
     <div className="timer">
-      <p className="timer__time">{`${m !== '' && m !== null && !Number.isNaN(m) && m < 59 ? m.toString().padStart(2, '0') : 0}:${s !== '' && s !== null && !Number.isNaN(s) && s < 59 ? s.toString().padStart(2, '0') : 0}`}</p>
+      <p className="timer__time">{`${m !== '' || m !== null || !Number.isNaN(m) || m < 59 ? m.toString().padStart(2, '0') : 0}:${s !== '' || s !== null || Number.isNaN(s) || s < 59 ? s.toString().padStart(2, '0') : 0}`}</p>
+
       <div className="timer__up">{over ? "Time's up!" : ''}</div>
       <button className="timer__function" onClick={() => setPaused(!paused)}>
         {paused ? '►' : 'II'}
