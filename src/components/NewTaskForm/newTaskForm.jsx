@@ -17,7 +17,7 @@ const NewTaskForm = ({ addList }) => {
     if (!newList.trim()) return;
 
     if (event.key === 'Enter' && newList !== '' && min !== '' && sec !== '') {
-      if (!isNaN(min) && !isNaN(sec) && Math.abs(min) < 59 && Math.abs(sec) < 59) {
+      if (!isNaN(min) && !isNaN(sec) && Math.abs(min) <= 59 && Math.abs(sec) <= 59) {
         addList(newList, min, sec);
         setNewList('');
         setMin('');
